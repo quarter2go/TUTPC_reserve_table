@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>CanteenGo – Tables & Orders</title>
+<title>ZEROWAIT – Tables & Orders</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
@@ -33,7 +33,6 @@ h2{font-size:16px;font-weight:800;letter-spacing:-.2px}
 .mt8{margin-top:8px}.mt12{margin-top:12px}.mt16{margin-top:16px}.mt20{margin-top:20px}
 svg.ic{flex:none;stroke:currentColor;fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
 
-/* header */
 .top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px}
 .top .eyebrow{font-size:12px;font-weight:600;color:var(--muted);display:flex;align-items:center;gap:5px;margin-bottom:3px}
 .avatar{width:42px;height:42px;border-radius:50%;background:var(--brand-soft);color:var(--brand-d);display:grid;place-items:center;font-weight:800}
@@ -41,7 +40,6 @@ svg.ic{flex:none;stroke:currentColor;fill:none;stroke-width:1.9;stroke-linecap:r
 .live i{width:7px;height:7px;border-radius:50%;background:var(--brand);animation:pulse 1.6s infinite}
 @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(18,181,166,.6)}70%{box-shadow:0 0 0 7px rgba(18,181,166,0)}100%{box-shadow:0 0 0 0 rgba(18,181,166,0)}}
 
-/* cards */
 .card{background:var(--card);border-radius:var(--r);padding:14px;border:1px solid var(--line);box-shadow:0 2px 10px rgba(20,38,58,.04)}
 .hero{background:linear-gradient(135deg,#12B5A6,#0E9A9A 60%,#2DB9A0);color:#fff;border:0;padding:18px;position:relative;overflow:hidden}
 .hero:after{content:"";position:absolute;right:-30px;top:-40px;width:150px;height:150px;border-radius:50%;background:rgba(255,255,255,.12)}
@@ -61,20 +59,18 @@ svg.ic{flex:none;stroke:currentColor;fill:none;stroke-width:1.9;stroke-linecap:r
 .pop b{display:block;font-size:13px;margin-top:8px;line-height:1.25;min-height:32px}
 .pop .row{margin-top:6px}
 
-/* chips */
 .chips{display:flex;gap:8px;overflow-x:auto;margin:0 -18px;padding:2px 18px;scrollbar-width:none}
 .chips::-webkit-scrollbar{display:none}
 .chip{flex:none;padding:9px 14px;border-radius:99px;background:#fff;border:1.5px solid var(--line);font-weight:700;font-size:13px;color:var(--muted);transition:.15s}
 .chip.on{background:var(--ink);border-color:var(--ink);color:#fff}
 .chip.brand.on{background:var(--brand);border-color:var(--brand)}
-.chip:disabled{opacity:.4;text-decoration:line-through;cursor:not-allowed}
 .seg{display:flex;background:#E8F1EF;border-radius:14px;padding:4px;gap:4px}
 .seg button{flex:1;padding:9px;border-radius:11px;font-weight:700;font-size:13px;color:var(--muted)}
 .seg button.on{background:#fff;color:var(--ink);box-shadow:0 2px 8px rgba(20,38,58,.08)}
 
-/* buttons */
 .btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:15px;border-radius:16px;background:var(--brand);color:#fff;font-weight:800;font-size:15px;box-shadow:0 8px 18px rgba(18,181,166,.28)}
 .btn:active{transform:scale(.98)}
+.btn:disabled{opacity:.45;box-shadow:none;cursor:not-allowed}
 .btn.ghost{background:#fff;color:var(--coral);border:1.5px solid #F6C9C3;box-shadow:none}
 .btn.soft{background:var(--brand-soft);color:var(--brand-d);box-shadow:none}
 .btn.sm{width:auto;padding:9px 14px;font-size:13px;border-radius:12px;box-shadow:none}
@@ -84,27 +80,47 @@ svg.ic{flex:none;stroke:currentColor;fill:none;stroke-width:1.9;stroke-linecap:r
 .pill.coral{background:var(--coral-soft);color:#A5382B}
 .pill.gray{background:#EEF2F4;color:var(--muted)}
 
-/* table map */
+/* canteen map */
 .legend{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:12px 0}
 .legend div{background:#fff;border:1px solid var(--line);border-radius:14px;padding:9px 10px;font-size:11px;color:var(--muted);font-weight:600}
 .legend b{display:block;font-size:18px;color:var(--ink);line-height:1.1}
 .legend i{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:5px}
-.map{position:relative;width:100%;aspect-ratio:340/480;background:#fff;border:1px solid var(--line);border-radius:22px;overflow:hidden}
-.zone{position:absolute;left:1.8%;width:96.4%;background:#F5FAF9;border:1.5px dashed #D3E6E2;border-radius:18px}
-.zone span{position:absolute;left:12px;top:7px;font-size:10px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:#8AA39E}
-.counter{position:absolute;left:1.8%;width:96.4%;top:1.2%;height:8%;background:var(--ink);color:#fff;border-radius:14px;display:flex;align-items:center;justify-content:center;gap:8px;font-size:11px;font-weight:700;letter-spacing:.3px}
-.door{position:absolute;left:50%;bottom:1.4%;transform:translateX(-50%);font-size:10px;font-weight:800;letter-spacing:.8px;color:#8AA39E;text-transform:uppercase;display:flex;gap:6px;align-items:center}
-.tb{position:absolute;border:2px solid;display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1.15;transition:transform .12s,opacity .2s}
-.tb b{font-size:12px;font-weight:800}.tb span{font-size:9.5px;font-weight:600;opacity:.85}
-.tb.round{border-radius:50%}.tb.rect{border-radius:14px}
-.tb.st-available{background:#fff;border-color:#2BC48A;color:#0B7A55;box-shadow:0 3px 8px rgba(43,196,138,.22)}
-.tb.st-available:active{transform:scale(.94)}
-.tb.st-reserved{background:var(--sun-soft);border-color:#F2B632;color:#8A5A00}
-.tb.st-occupied{background:#FDE7E4;border-color:#F28B7E;color:#A5382B}
-.tb.st-mine{background:var(--brand);border-color:var(--brand-d);color:#fff;box-shadow:0 5px 14px rgba(18,181,166,.4)}
-.tb.dim{opacity:.22;pointer-events:none}
+.mapwrap{overflow-x:auto;background:#FBFDFC;border:1px solid var(--line);border-radius:22px;scrollbar-width:thin}
+.map{position:relative;width:580px;height:560px}
+.map>*{position:absolute}
+.river{background:repeating-linear-gradient(115deg,#BFE3F5 0 12px,#D6EEF9 12px 24px);border-bottom:3px solid #4DA3D9;color:#2F7FB0;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;letter-spacing:6px}
+.floor{background:#F3F8F7;border:1.5px dashed #D3E6E2;border-radius:14px}
+.stall{border:1.5px solid;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;text-align:center;line-height:1.15;padding:2px}
+.stall:active{filter:brightness(.94)}
+.stall:after{content:"";position:absolute;right:-9px;top:10px;bottom:10px;width:7px;border:1.5px solid;border-color:inherit;border-radius:3px;background:#fff}
+.stall.top{border-radius:12px 12px 0 0}.stall.bot{border-radius:0 0 12px 12px}
+.stall.L{background:#FFF3CF;border-color:#F2B632;color:#7A5200}
+.stall.R{background:#FFE9D6;border-color:#F0A870;color:#8A4310}
+.stall .e{font-size:17px}.stall b{font-size:8.5px;font-weight:800}
+.stall small{font-size:7.5px;font-weight:700;opacity:.7}
+.poi{border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-size:9px;font-weight:800;text-align:center;line-height:1.2}
+.poi .e{font-size:17px}
+.poi.wc{background:var(--blue-soft);color:#2F6FD1;border:1.5px solid #BBD6F7;writing-mode:vertical-rl;letter-spacing:1.5px;flex-direction:row}
+.poi.ctu{background:#EADFF7;color:#5B3D9A;border:1.5px solid #D2BEF0;border-radius:8px}
+.poi.info{background:#fff;color:var(--ink);border:1.5px solid var(--line);box-shadow:0 2px 6px rgba(20,38,58,.08)}
+.poi.wall{background:#E9EFEE;border:1.5px solid #D3E0DD;border-radius:0 0 10px 0}
+.tag{font-size:9px;font-weight:800;color:#8AA39E;display:flex;align-items:center}
+.wallline{background:var(--ink);border-radius:2px;height:3px}.wallline.thin{height:1.5px;background:#B8C9C5}
+.btr{background:var(--ink);color:#fff;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;letter-spacing:2px}
+.maphint{text-align:center;font-size:12px;color:var(--muted);margin-top:10px}
 
-/* menu */
+.tb{border:0;background:none;padding:0;display:flex;align-items:stretch;gap:2px;transition:transform .12s}
+.tb:active{transform:scale(.92)}
+.tb .sp{width:26%;display:flex;flex-direction:column;gap:2px;justify-content:center}
+.tb .sp i{flex:1;border-radius:3px;background:var(--c)}
+.tb .tt{flex:1;border-radius:4px;border:2px solid var(--c);background:var(--f);color:var(--k);display:grid;place-items:center;font-size:8px;font-weight:800;box-shadow:0 2px 5px rgba(20,38,58,.1)}
+.st-available{--c:#2BC48A;--f:#fff;--k:#0B7A55}
+.st-reserved{--c:#F2B632;--f:#FFF3CF;--k:#8A5A00}
+.st-occupied{--c:#F28B7E;--f:#FDE7E4;--k:#A5382B}
+.st-mine{--c:#0B8F84;--f:#12B5A6;--k:#fff}
+.mini{position:relative!important;left:auto!important;top:auto!important;width:120px!important;height:84px!important;margin:0 auto}
+.mini .sp{gap:5px}.mini .tt{font-size:15px}
+
 .search{display:flex;align-items:center;gap:10px;background:#fff;border:1.5px solid var(--line);border-radius:16px;padding:12px 14px;color:var(--muted)}
 .search input{border:0;outline:0;flex:1;background:none;font-size:14px}
 .item{display:flex;gap:12px;background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:10px;margin-bottom:10px}
@@ -123,7 +139,6 @@ svg.ic{flex:none;stroke:currentColor;fill:none;stroke-width:1.9;stroke-linecap:r
 .cartbar.show{display:flex}
 .cartbar .cnt{background:var(--sun);color:var(--ink);width:26px;height:26px;border-radius:9px;display:grid;place-items:center;font-weight:800;font-size:13px}
 
-/* orders */
 .track{margin-top:12px}
 .steps{display:flex;align-items:center;margin:14px 0 6px}
 .steps .dot{width:26px;height:26px;border-radius:50%;background:#E6EEEC;color:#9FB1AD;display:grid;place-items:center;font-size:12px;font-weight:800;flex:none}
@@ -144,7 +159,6 @@ svg.ic{flex:none;stroke:currentColor;fill:none;stroke-width:1.9;stroke-linecap:r
 .kv small{display:block;font-size:11px;color:var(--muted);font-weight:600}
 .kv b{font-size:14px}
 
-/* nav */
 nav{position:absolute;left:0;right:0;bottom:0;background:rgba(255,255,255,.96);backdrop-filter:blur(10px);border-top:1px solid var(--line);display:flex;padding:8px 10px calc(10px + env(safe-area-inset-bottom));z-index:6}
 nav button{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;font-size:11px;font-weight:700;color:#8A9BAB;position:relative}
 nav .ni{width:52px;height:30px;border-radius:15px;display:grid;place-items:center;transition:.2s}
@@ -152,7 +166,6 @@ nav button.on{color:var(--brand-d)}
 nav button.on .ni{background:var(--brand-soft)}
 nav .badge{position:absolute;top:-3px;right:calc(50% - 30px);background:var(--coral);color:#fff;min-width:17px;height:17px;border-radius:9px;font-size:10px;display:grid;place-items:center;padding:0 4px;border:2px solid #fff}
 
-/* sheet */
 .overlay{position:absolute;inset:0;background:rgba(20,38,58,.4);display:none;align-items:flex-end;z-index:10}
 .overlay.open{display:flex}
 .sheet{background:#fff;width:100%;border-radius:28px 28px 0 0;padding:10px 20px 24px;max-height:90%;overflow-y:auto;animation:up .22s ease}
@@ -201,50 +214,52 @@ const ic = (n,s=20) => `<svg class="ic" width="${s}" height="${s}" viewBox="0 0 
 
 /* ---------- data ---------- */
 const SLOTS = ['11:45','12:15','12:45','13:15','13:45'];
-const TABLES = [];
-for(let i=0;i<5;i++) TABLES.push({id:'W'+(i+1),zone:'Window side',seats:2,x:14+i*64,y:84,w:54,h:46,shape:'rect'});
-[[28,180],[138,180],[246,180],[28,262],[138,262],[246,262]].forEach((p,i)=>
-  TABLES.push({id:'M'+(i+1),zone:'Main hall',seats:4,x:p[0],y:p[1],w:66,h:66,shape:'round'}));
-TABLES.push({id:'G1',zone:'Group zone',seats:6,x:22,y:376,w:128,h:52,shape:'rect'});
-TABLES.push({id:'G2',zone:'Group zone',seats:6,x:190,y:376,w:128,h:52,shape:'rect'});
-const ZONES = [
-  {label:'Window side',y:58,h:86},
-  {label:'Main hall',y:152,h:192},
-  {label:'Group zone',y:352,h:88}
+
+/* Every table is an identical 4-seat table: portrait table in the middle, a bench with 2 seats on each side */
+const TABLES = []; let tn = 1;
+const addT = (x,y) => TABLES.push({id:'T'+(tn++),seats:4,x,y,w:46,h:32});
+[64,120,176,232].forEach(x=>addT(x,70));                       /* top row */
+[138,190,242,294].forEach(y=>{[154,208,262,316].forEach(x=>addT(x,y));[462,516].forEach(x=>addT(x,y))});
+
+/* Food stalls: a block of 4 on the left, a block of 4 on the right */
+const STALLS = [
+  {id:'L1',n:'Rice Corner',e:'🍚',side:'L'},{id:'L2',n:'Curry House',e:'🍛',side:'L'},
+  {id:'L3',n:'Noodle Bar',e:'🍜',side:'L'},{id:'L4',n:'Roti & Sweets',e:'🥞',side:'L'},
+  {id:'R1',n:'Snack & Salad',e:'🥗',side:'R'},{id:'R2',n:'Juice Bar',e:'🍊',side:'R'},
+  {id:'R3',n:'Tea House',e:'🧋',side:'R'},{id:'R4',n:'Coffee Point',e:'☕',side:'R'}
 ];
-const MW = 340, MH = 480;
+const stallById = id => STALLS.find(s => s.id === id);
 
 const MENU = [
-  {id:'r1',n:'Basil Pork Rice',d:'Stir-fried pork, holy basil, fried egg',p:45,cat:'Rice',e:'🍳',c:'#FFE9D6',t:7},
-  {id:'r2',n:'Hainanese Chicken Rice',d:'Poached chicken, ginger rice, soup',p:40,cat:'Rice',e:'🍗',c:'#FFF3CF',t:5},
-  {id:'r3',n:'Green Curry & Rice',d:'Chicken green curry, jasmine rice',p:50,cat:'Rice',e:'🍛',c:'#DFF5E3',t:6},
-  {id:'r4',n:'Egg Fried Rice',d:'Wok-fried rice, egg, cucumber, lime',p:40,cat:'Rice',e:'🍚',c:'#FFF3CF',t:6},
-  {id:'n1',n:'Pad Thai',d:'Rice noodles, shrimp, peanuts, bean sprouts',p:50,cat:'Noodles',e:'🍜',c:'#FFE9D6',t:8},
-  {id:'n2',n:'Tom Yum Noodles',d:'Spicy-sour soup, pork balls, herbs',p:45,cat:'Noodles',e:'🍲',c:'#FFE1DC',t:7},
-  {id:'n3',n:'Boat Noodles',d:'Rich, savoury broth with beef slices',p:40,cat:'Noodles',e:'🥣',c:'#EADFF7',t:6},
-  {id:'s1',n:'Fresh Spring Rolls',d:'Crispy rolls with sweet chili dip',p:30,cat:'Snacks',e:'🥟',c:'#FFF3CF',t:4},
-  {id:'s2',n:'Garden Salad Bowl',d:'Greens, tomato, corn, sesame dressing',p:55,cat:'Snacks',e:'🥗',c:'#DFF5E3',t:4},
-  {id:'s3',n:'Banana Roti',d:'Crispy roti, banana, condensed milk',p:35,cat:'Snacks',e:'🥞',c:'#FFE9D6',t:6},
-  {id:'s4',n:'Fruit Cup',d:'Seasonal cut fruit, chilled',p:25,cat:'Snacks',e:'🍉',c:'#FFE1DC',t:2},
-  {id:'d1',n:'Thai Iced Tea',d:'Classic, creamy and sweet',p:25,cat:'Drinks',e:'🧋',c:'#FFE9D6',t:2},
-  {id:'d2',n:'Iced Americano',d:'Double shot over ice',p:35,cat:'Drinks',e:'☕',c:'#EADFF7',t:3},
-  {id:'d3',n:'Fresh Orange Juice',d:'Squeezed to order',p:30,cat:'Drinks',e:'🍊',c:'#FFF3CF',t:3},
-  {id:'d4',n:'Drinking Water',d:'600 ml bottle',p:10,cat:'Drinks',e:'💧',c:'#E4F0FF',t:1}
+  {id:'r1',n:'Basil Pork Rice',d:'Stir-fried pork, holy basil, fried egg',p:45,cat:'Rice',e:'🍳',c:'#FFE9D6',t:7,s:'L1'},
+  {id:'r2',n:'Hainanese Chicken Rice',d:'Poached chicken, ginger rice, soup',p:40,cat:'Rice',e:'🍗',c:'#FFF3CF',t:5,s:'L1'},
+  {id:'r3',n:'Green Curry & Rice',d:'Chicken green curry, jasmine rice',p:50,cat:'Rice',e:'🍛',c:'#DFF5E3',t:6,s:'L2'},
+  {id:'r4',n:'Egg Fried Rice',d:'Wok-fried rice, egg, cucumber, lime',p:40,cat:'Rice',e:'🍚',c:'#FFF3CF',t:6,s:'L2'},
+  {id:'n1',n:'Pad Thai',d:'Rice noodles, shrimp, peanuts, bean sprouts',p:50,cat:'Noodles',e:'🍜',c:'#FFE9D6',t:8,s:'L3'},
+  {id:'n2',n:'Tom Yum Noodles',d:'Spicy-sour soup, pork balls, herbs',p:45,cat:'Noodles',e:'🍲',c:'#FFE1DC',t:7,s:'L3'},
+  {id:'n3',n:'Boat Noodles',d:'Rich, savoury broth with beef slices',p:40,cat:'Noodles',e:'🥣',c:'#EADFF7',t:6,s:'L3'},
+  {id:'s1',n:'Fresh Spring Rolls',d:'Crispy rolls with sweet chili dip',p:30,cat:'Snacks',e:'🥟',c:'#FFF3CF',t:4,s:'R1'},
+  {id:'s2',n:'Garden Salad Bowl',d:'Greens, tomato, corn, sesame dressing',p:55,cat:'Snacks',e:'🥗',c:'#DFF5E3',t:4,s:'R1'},
+  {id:'s3',n:'Banana Roti',d:'Crispy roti, banana, condensed milk',p:35,cat:'Snacks',e:'🥞',c:'#FFE9D6',t:6,s:'L4'},
+  {id:'s4',n:'Fruit Cup',d:'Seasonal cut fruit, chilled',p:25,cat:'Snacks',e:'🍉',c:'#FFE1DC',t:2,s:'L4'},
+  {id:'d1',n:'Thai Iced Tea',d:'Classic, creamy and sweet',p:25,cat:'Drinks',e:'🧋',c:'#FFE9D6',t:2,s:'R3'},
+  {id:'d2',n:'Iced Americano',d:'Double shot over ice',p:35,cat:'Drinks',e:'☕',c:'#EADFF7',t:3,s:'R4'},
+  {id:'d3',n:'Fresh Orange Juice',d:'Squeezed to order',p:30,cat:'Drinks',e:'🍊',c:'#FFF3CF',t:3,s:'R2'},
+  {id:'d4',n:'Drinking Water',d:'600 ml bottle',p:10,cat:'Drinks',e:'💧',c:'#E4F0FF',t:1,s:'R2'}
 ];
 const CATS = ['All','Rice','Noodles','Snacks','Drinks'];
 const byId = id => MENU.find(m => m.id === id);
 
-/* seeded random so the canteen looks lively */
 function rng(seed){return()=>{seed|=0;seed=seed+0x6D2B79F5|0;let t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
 const PR = [[.55,.15],[.38,.32],[.25,.40],[.20,.30],[.10,.20]];
 
 const state = {
   tab:'home', simNow: 11*60+40, tick:0,
-  slot:0, seatFilter:0,
+  slot:0,
   st: SLOTS.map((s,i)=>{const r=rng(i*97+13);const o={};
       TABLES.forEach(t=>{const x=r();o[t.id]=x<PR[i][0]?'occupied':x<PR[i][0]+PR[i][1]?'reserved':'available'});return o}),
   res:null,
-  cart:{}, cat:'All', q:'',
+  cart:{}, cat:'All', q:'', stall:null,
   orders:[], orderSeq:214,
   history:[
     {id:'A187',when:'Yesterday · 12:10',items:[{id:'r1',q:1},{id:'d1',q:1}]},
@@ -256,7 +271,6 @@ const total = items => items.reduce((s,i)=>s+byId(i.id).p*i.q,0);
 const cartItems = () => Object.entries(state.cart).filter(([,q])=>q>0).map(([id,q])=>({id,q}));
 const cartCount = () => cartItems().reduce((s,i)=>s+i.q,0);
 
-/* ---------- order status (derived from the simulated clock) ---------- */
 function stage(o){ return state.simNow >= o.readyAt ? 2 : state.simNow >= o.prepStart ? 1 : 0; }
 
 /* ---------- screens ---------- */
@@ -271,11 +285,11 @@ function reservationCard(compact){
     <div class="res-top">
       <div class="res-badge">${r.id}</div>
       <div style="flex:1"><div class="small muted" style="font-weight:700">YOUR TABLE</div>
-        <b style="font-size:16px">${r.zone} · ${r.guests} ${r.guests>1?'guests':'guest'}</b>
-        <div class="small muted mt8" style="margin-top:2px">Today, ${r.slot}–${fmt(tmin(r.slot)+60)}</div></div>
+        <b style="font-size:16px">Table ${r.id} · ${r.guests} ${r.guests>1?'guests':'guest'}</b>
+        <div class="small muted" style="margin-top:2px">Today, ${r.slot}–${fmt(tmin(r.slot)+60)}</div></div>
       <span class="pill green">${ic('check',12)}Confirmed</span>
     </div>
-    ${compact?'':`<div class="kv"><div><small>Arrive by</small><b>${fmt(tmin(r.slot)+15)}</b></div><div><small>Seats</small><b>${r.seats} at table</b></div></div>
+    ${compact?'':`<div class="kv"><div><small>Arrive by</small><b>${fmt(tmin(r.slot)+15)}</b></div><div><small>Seats</small><b>4-seat table</b></div></div>
     <p class="small muted mt12">Your table is held for 15 minutes after the start time.</p>
     <button class="btn ghost mt12" data-a="askCancel">Cancel reservation</button>`}
   </div>`;
@@ -310,7 +324,7 @@ function homeHTML(){
     <div class="pop"><div class="th" style="background:${m.c}">${m.e}</div><b>${m.n}</b>
       <div class="row between"><span class="price">${baht(m.p)}</span><button class="add" style="width:30px;height:30px;border-radius:10px" data-a="add" data-v="${m.id}" aria-label="Add ${m.n}">${ic('plus',16)}</button></div></div>`).join('');
   return `
-  <div class="top"><div><div class="eyebrow">${ic('pin',13)}Central Canteen · Building 3</div><h1>${hello} 👋</h1></div><div class="avatar">S</div></div>
+  <div class="top"><div><div class="eyebrow">${ic('pin',13)}ZEROWAIT · Canteen</div><h1>${hello} 👋</h1></div><div class="avatar">S</div></div>
   <div class="card hero">
     <div class="row between"><span class="small" style="font-weight:700;opacity:.9">Seats free right now</span><span class="live" style="background:rgba(255,255,255,.2);color:#fff"><i style="background:#fff"></i>Live</span></div>
     <div class="row gap8" style="align-items:baseline;margin-top:10px"><span class="big">${free}</span><span style="opacity:.85;font-weight:600">of ${totalSeats} seats</span></div>
@@ -319,48 +333,61 @@ function homeHTML(){
   </div>
   <div class="tiles mt16">
     <button class="tile" data-a="go" data-v="tables"><div class="bubble" style="background:var(--blue-soft);color:#2F6FD1">${ic('table',22)}</div><div><b>Reserve a table</b><br><span>See the live map</span></div></button>
-    <button class="tile" data-a="go" data-v="menu"><div class="bubble" style="background:var(--sun-soft);color:#B07A00">${ic('menu',22)}</div><div><b>Order ahead</b><br><span>Skip the queue</span></div></button>
+    <button class="tile" data-a="stallAll"><div class="bubble" style="background:var(--sun-soft);color:#B07A00">${ic('menu',22)}</div><div><b>Order ahead</b><br><span>Skip the queue</span></div></button>
   </div>
   ${(state.res||act)?`<div class="sec"><h2>Happening now</h2><button class="link" data-a="go" data-v="mine">See all</button></div>
     ${state.res?reservationCard(true):''}${act?`<div style="margin-top:12px">${orderCard(act)}</div>`:''}`:''}
-  <div class="sec"><h2>Popular today</h2><button class="link" data-a="go" data-v="menu">Full menu</button></div>
+  <div class="sec"><h2>Popular today</h2><button class="link" data-a="stallAll">Full menu</button></div>
   <div class="hscroll">${popular}</div>`;
 }
+
+/* table graphic: bench (2 seats) | table | bench (2 seats) */
+const tbInner = id => `<span class="sp"><i></i><i></i></span><span class="tt">${id}</span><span class="sp"><i></i><i></i></span>`;
+const bx = (x,y,w,h) => `left:${x}px;top:${y}px;width:${w}px;height:${h}px`;
 
 function tablesHTML(){
   const sl = state.slot, S = state.st[sl];
   const cnt = k => TABLES.filter(t=>S[t.id]===k).length;
   const mineHere = state.res && state.res.slot===SLOTS[sl];
   const chips = SLOTS.map((s,i)=>`<button class="chip brand ${i===sl?'on':''}" data-a="slot" data-v="${i}">${i===0?'Now · ':''}${s}</button>`).join('');
-  const seg = [[0,'Any'],[2,'2 seats'],[4,'4 seats'],[6,'6 seats']].map(([v,l])=>`<button class="${state.seatFilter===v?'on':''}" data-a="seatf" data-v="${v}">${l}</button>`).join('');
-  const zones = ZONES.map(z=>`<div class="zone" style="top:${z.y/MH*100}%;height:${z.h/MH*100}%"><span>${z.label}</span></div>`).join('');
   const tbs = TABLES.map(t=>{
-    let st = S[t.id]; if(st==='mine') st='mine';
-    const dim = state.seatFilter && t.seats!==state.seatFilter ? 'dim':'';
-    return `<button class="tb ${t.shape} st-${st} ${dim}" style="left:${t.x/MW*100}%;top:${t.y/MH*100}%;width:${t.w/MW*100}%;height:${t.h/MH*100}%" data-a="tbl" data-v="${t.id}" aria-label="Table ${t.id}, ${t.seats} seats, ${st}">
-      <b>${st==='mine'?'✓ ':''}${t.id}</b><span>${t.seats} seats</span></button>`;
+    const st = S[t.id];
+    return `<button class="tb st-${st}" style="${bx(t.x,t.y,t.w,t.h)}" data-a="tbl" data-v="${t.id}" aria-label="Table ${t.id}, 4 seats, ${st}">${tbInner(t.id)}</button>`;
+  }).join('');
+  const stalls = STALLS.map(s=>{
+    const L = s.side==='L', i = +s.id[1]-1;
+    return `<button class="stall ${s.side} ${i===0?'top':i===3?'bot':''}" style="${bx(L?72:376,128+i*60,58,61)}" data-a="stall" data-v="${s.id}" aria-label="${s.n} food stall"><span class="e">${s.e}</span><b>${s.n}</b><small>Stall ${s.id}</small></button>`;
   }).join('');
   return `
   <div class="top"><div><div class="eyebrow">${ic('cal',13)}Today · simulated clock ${fmt(state.simNow)}</div><h1>Find a table</h1></div><span class="live"><i></i>Live</span></div>
   <div class="chips">${chips}</div>
-  <div class="seg mt12">${seg}</div>
   <div class="legend">
     <div><i style="background:#2BC48A"></i>Available<b>${cnt('available')}</b></div>
     <div><i style="background:#F2B632"></i>Reserved<b>${cnt('reserved')}</b></div>
     <div><i style="background:#F28B7E"></i>Occupied<b>${cnt('occupied')}</b></div>
   </div>
-  <div class="map">
-    <div class="counter">${ic('menu',14)}FOOD COUNTERS · PICKUP</div>
-    ${zones}${tbs}
-    <div class="door">${ic('arrow',12)}Entrance</div>
-  </div>
-  <p class="small muted mt12" style="text-align:center">${mineHere?'Your table is highlighted in teal.':'Tap a green table to reserve it. Status updates live.'}</p>`;
+  <div class="mapwrap" id="mapwrap"><div class="map">
+    <div class="river" style="left:0;top:0;width:580px;height:50px">RIVER</div>
+    <div class="floor" style="${bx(44,58,522,319)}"></div>
+    <div class="poi wall" style="${bx(0,58,34,68)}"></div>
+    <div class="poi info" style="${bx(325,66,66,52)}"><span class="e">ℹ️</span>🛖</div>
+    ${tbs}${stalls}
+    <div class="poi wc" style="${bx(6,187,26,64)}">🚻 TOILET</div>
+    <div class="poi wc" style="${bx(6,262,26,64)}">🚻 TOILET</div>
+    <div class="tag" style="${bx(34,318,38,12)}">← Door</div>
+    <div class="wallline" style="left:20px;top:377px;width:425px"></div>
+    <div class="poi ctu" style="${bx(482,380,98,34)}">Path to CITU →</div>
+    <div class="wallline thin" style="left:20px;top:450px;width:425px"></div>
+    <div class="btr" style="${bx(175,498,137,36)}">BIR</div>
+  </div></div>
+  <p class="maphint">↔ Swipe sideways to see the whole canteen</p>
+  <p class="small muted mt8" style="text-align:center">${mineHere?'Your table is highlighted in teal.':'Every table seats 4. Tap a table to reserve it, or a food shop to see its menu.'}</p>`;
 }
 
 function menuListHTML(){
   const q = state.q.trim().toLowerCase();
-  const list = MENU.filter(m=>(state.cat==='All'||m.cat===state.cat)&&(!q||(m.n+m.d).toLowerCase().includes(q)));
-  if(!list.length) return `<div class="empty"><div class="eb">${ic('search',28)}</div>No dishes match “${state.q}”.</div>`;
+  const list = MENU.filter(m=>(!state.stall||m.s===state.stall)&&(state.cat==='All'||m.cat===state.cat)&&(!q||(m.n+m.d).toLowerCase().includes(q)));
+  if(!list.length) return `<div class="empty"><div class="eb">${ic('search',28)}</div>No dishes match${state.q?` “${state.q}”`:' this filter'}.</div>`;
   return list.map(m=>{
     const qty = state.cart[m.id]||0;
     const ctl = qty? `<div class="step"><button data-a="dec" data-v="${m.id}" aria-label="Remove one">${ic('minus',16)}</button><span>${qty}</span><button data-a="inc" data-v="${m.id}" aria-label="Add one">${ic('plus',16)}</button></div>`
@@ -371,10 +398,11 @@ function menuListHTML(){
   }).join('');
 }
 function menuHTML(){
+  const st = state.stall ? stallById(state.stall) : null;
   return `
-  <div class="top"><div><div class="eyebrow">${ic('bag',13)}Pickup at Counter 2</div><h1>Order ahead</h1></div><span class="pill gray">${ic('clock',12)}Open until 17:00</span></div>
+  <div class="top"><div><div class="eyebrow">${ic('bag',13)}Pickup at Counter 2</div><h1>${st?st.n:'Order ahead'}</h1></div><span class="pill gray">${ic('clock',12)}Open until 17:00</span></div>
   <div class="search">${ic('search',18)}<input id="q" type="search" placeholder="Search dishes or drinks" value="${state.q.replace(/"/g,'&quot;')}"></div>
-  <div class="chips mt12">${CATS.map(c=>`<button class="chip ${state.cat===c?'on':''}" data-a="cat" data-v="${c}">${c}</button>`).join('')}</div>
+  <div class="chips mt12">${st?`<button class="chip on" data-a="stallAll">${st.e} ${st.n} ✕</button>`:''}${CATS.map(c=>`<button class="chip ${state.cat===c?'on':''}" data-a="cat" data-v="${c}">${c}</button>`).join('')}</div>
   <div class="mt16" id="menulist">${menuListHTML()}</div>`;
 }
 
@@ -389,7 +417,7 @@ function mineHTML(){
       `<div class="card empty"><div class="eb">${ic('table',28)}</div><b style="color:var(--ink)">No table reserved</b><p class="mt8">Pick a spot before you head over.</p><button class="btn soft sm mt12" data-a="go" data-v="tables" style="margin:12px auto 0">Find a table</button></div>`;
     body += `<div class="sec"><h2>Food orders</h2></div>`;
     body += state.orders.length ? state.orders.map(orderCard).join('<div style="height:12px"></div>') :
-      `<div class="card empty"><div class="eb">${ic('bag',28)}</div><b style="color:var(--ink)">No active orders</b><p class="mt8">Order ahead and we’ll tell you when it’s ready.</p><button class="btn soft sm mt12" data-a="go" data-v="menu" style="margin:12px auto 0">Browse menu</button></div>`;
+      `<div class="card empty"><div class="eb">${ic('bag',28)}</div><b style="color:var(--ink)">No active orders</b><p class="mt8">Order ahead and we’ll tell you when it’s ready.</p><button class="btn soft sm mt12" data-a="stallAll" style="margin:12px auto 0">Browse menu</button></div>`;
   } else {
     body += `<div class="mt16">` + state.history.map(h=>`
       <div class="card" style="margin-bottom:12px"><div class="row between"><div><b>Order #${h.id}</b><div class="small muted">${h.when}</div></div><span class="pill gray">Completed</span></div>
@@ -402,21 +430,23 @@ function mineHTML(){
 /* ---------- render ---------- */
 function renderScreen(){
   const main = $('#screen'), y = main.scrollTop;
+  const mw0 = $('#mapwrap'), sx = mw0 ? mw0.scrollLeft : 0;
   main.innerHTML = {home:homeHTML,tables:tablesHTML,menu:menuHTML,mine:mineHTML}[state.tab]();
   main.scrollTop = y;
+  const mw1 = $('#mapwrap'); if(mw1) mw1.scrollLeft = sx;
   const q = $('#q'); if(q) q.addEventListener('input',e=>{state.q=e.target.value;$('#menulist').innerHTML=menuListHTML()});
   renderNav(); renderCartBar();
 }
 function renderNav(){
   const badge = state.orders.length + (state.res?1:0);
   const items=[['home','Home','home'],['tables','Tables','table'],['menu','Order','menu'],['mine','Bookings','list']];
-  $('#nav').innerHTML = items.map(([k,l,i])=>`<button class="${state.tab===k?'on':''}" data-a="go" data-v="${k}"><span class="ni">${ic(i,22)}</span>${l}${k==='mine'&&badge?`<span class="badge">${badge}</span>`:''}</button>`).join('');
+  $('#nav').innerHTML = items.map(([k,l,i])=>`<button class="${state.tab===k?'on':''}" data-a="${k==='menu'?'stallAll':'go'}" data-v="${k}"><span class="ni">${ic(i,22)}</span>${l}${k==='mine'&&badge?`<span class="badge">${badge}</span>`:''}</button>`).join('');
 }
 function renderCartBar(){
   const n = cartCount(), el = $('#cartbar');
   const show = n>0 && (state.tab==='menu'||state.tab==='home');
   el.classList.toggle('show',show);
-  if(show) el.innerHTML = `<button class="row gap12" data-a="openCart" style="width:100%;justify-content:space-between;color:#fff"><span class="row gap12"><span class="cnt">${n}</span><b>View your order</b></span><b>${baht(total(cartItems()))} ${''}</b></button>`;
+  if(show) el.innerHTML = `<button class="row gap12" data-a="openCart" style="width:100%;justify-content:space-between;color:#fff"><span class="row gap12"><span class="cnt">${n}</span><b>View your order</b></span><b>${baht(total(cartItems()))}</b></button>`;
 }
 
 /* ---------- sheets ---------- */
@@ -425,26 +455,26 @@ function closeSheet(){ state.sheet=null; $('#overlay').classList.remove('open');
 function renderSheet(){
   const s = state.sheet, el = $('#sheet'); if(!s) return;
   if(s.type==='table'){
-    const t = TABLES.find(x=>x.id===s.id);
-    const slots = SLOTS.map((sl,i)=>{
-      const ok = state.st[i][t.id]==='available' || (state.res&&state.res.id===t.id&&state.res.slot===sl);
-      return `<button class="chip brand ${s.slot===i?'on':''}" ${ok?'':'disabled'} data-a="sheetSlot" data-v="${i}">${sl}</button>`;}).join('');
+    const t = TABLES.find(x=>x.id===s.id), cur = state.st[s.slot][t.id], ok = cur==='available';
+    const pl = {available:['green','Available'],reserved:['sun','Reserved'],occupied:['coral','Occupied'],mine:['green','Your table']}[cur];
+    const slots = SLOTS.map((sl,i)=>`<button class="chip brand ${s.slot===i?'on':''}" data-a="sheetSlot" data-v="${i}">${sl}</button>`).join('');
     el.innerHTML = `<div class="grab"></div>
-      <div class="row gap12"><div class="res-badge" style="border-radius:50%">${t.id}</div><div style="flex:1"><h2 style="font-size:18px">Table ${t.id}</h2><div class="small muted">${t.zone} · seats up to ${t.seats}</div></div><span class="pill green">Available</span></div>
-      ${state.res?`<div class="card mt16" style="background:var(--sun-soft);border-color:#F6E2A0"><span class="small" style="font-weight:600;color:#8A5A00">You already hold table ${state.res.id} at ${state.res.slot}. Confirming will replace it.</span></div>`:''}
+      <div class="row gap12"><div style="flex:1"><h2 style="font-size:18px">Table ${t.id}</h2><div class="small muted">Seats: 4 · 2 on each side</div></div><span class="pill ${pl[0]}">${pl[1]} at ${SLOTS[s.slot]}</span></div>
+      <div class="tb mini st-${cur}" style="margin-top:16px">${tbInner(t.id,cur)}</div>
+      ${state.res&&ok?`<div class="card mt16" style="background:var(--sun-soft);border-color:#F6E2A0"><span class="small" style="font-weight:600;color:#8A5A00">You already hold table ${state.res.id} at ${state.res.slot}. Confirming will replace it.</span></div>`:''}
       <div class="lbl">Time slot (60 min)</div><div class="chips" style="flex-wrap:wrap;margin:0;padding:0;overflow:visible">${slots}</div>
       <div class="lbl">Guests</div>
       <div class="row between"><div class="row gap8 muted" style="font-weight:600">${ic('users',20)}Number of people</div>
         <div class="step"><button data-a="guest" data-v="-1">${ic('minus',16)}</button><span>${s.guests}</span><button data-a="guest" data-v="1">${ic('plus',16)}</button></div></div>
       <p class="small muted mt16">Your table is held for 15 minutes after the slot starts.</p>
-      <button class="btn mt16" data-a="confirmRes">${ic('check',18)}Reserve for ${SLOTS[s.slot]}</button>`;
+      <button class="btn mt16" data-a="confirmRes" ${ok?'':'disabled'}>${ok?ic('check',18)+'Reserve for '+SLOTS[s.slot]:cur==='mine'?'This is your table':'Not available at '+SLOTS[s.slot]}</button>`;
   }
   if(s.type==='cart'){
     const items = cartItems();
     const opts = ['asap']; const times = new Set(['12:30','13:00','13:30']);
     if(state.res) times.add(state.res.slot);
     [...times].filter(t=>tmin(t)>state.simNow+12).sort().forEach(t=>opts.push(t));
-    const o = items.map(i=>{const m=byId(i.id);return `<div class="line"><div class="row gap12"><span style="font-size:24px">${m.e}</span><div><b style="font-size:14px">${m.n}</b><div class="small muted">${baht(m.p)}</div></div></div>
+    const o = items.map(i=>{const m=byId(i.id);return `<div class="line"><div class="row gap12"><span style="font-size:24px">${m.e}</span><div><b style="font-size:14px">${m.n}</b><div class="small muted">${baht(m.p)} · ${stallById(m.s).n}</div></div></div>
       <div class="step"><button data-a="cdec" data-v="${i.id}">${ic('minus',16)}</button><span>${i.q}</span><button data-a="cinc" data-v="${i.id}">${ic('plus',16)}</button></div></div>`}).join('');
     const prep = prepFor(items);
     el.innerHTML = `<div class="grab"></div><div class="row between"><h2 style="font-size:18px">Your order</h2><button data-a="closeSheet" aria-label="Close" class="muted">${ic('x',22)}</button></div>
@@ -470,27 +500,26 @@ function go(tab){ state.tab=tab; $('#screen').scrollTop=0; renderScreen(); }
 
 const A = {
   go:v=>go(v),
+  stall:v=>{state.stall=v;state.cat='All';state.q='';go('menu')},
+  stallAll:()=>{state.stall=null;state.cat='All';state.q='';go('menu')},
   slot:v=>{state.slot=+v;renderScreen()},
-  seatf:v=>{state.seatFilter=+v;renderScreen()},
   tbl:v=>{
-    const t=TABLES.find(x=>x.id===v), st=state.st[state.slot][v];
-    if(st==='available') return openSheet({type:'table',id:v,slot:state.slot,guests:Math.min(2,t.seats)});
-    if(st==='mine') return go('mine');
-    toast(`Table ${v} is ${st} at ${SLOTS[state.slot]}`);
+    if(state.st[state.slot][v]==='mine') return go('mine');
+    openSheet({type:'table',id:v,slot:state.slot,guests:2});
   },
   sheetSlot:v=>{state.sheet.slot=+v;renderSheet()},
-  guest:v=>{const t=TABLES.find(x=>x.id===state.sheet.id);state.sheet.guests=Math.max(1,Math.min(t.seats,state.sheet.guests+ +v));renderSheet()},
+  guest:v=>{state.sheet.guests=Math.max(1,Math.min(4,state.sheet.guests+ +v));renderSheet()},
   confirmRes:()=>{
     const s=state.sheet,t=TABLES.find(x=>x.id===s.id);
-    if(state.st[s.slot][t.id]!=='available'){toast('Sorry, that table was just taken');closeSheet();renderScreen();return}
+    if(state.st[s.slot][t.id]!=='available'){toast('Sorry, that table is not available');return}
     if(state.res){ const i=SLOTS.indexOf(state.res.slot); state.st[i][state.res.id]='available'; }
     state.st[s.slot][t.id]='mine';
-    state.res={id:t.id,zone:t.zone,seats:t.seats,guests:s.guests,slot:SLOTS[s.slot]};
+    state.res={id:t.id,seats:4,guests:s.guests,slot:SLOTS[s.slot]};
     state.slot=s.slot; closeSheet(); renderScreen(); toast(`Table ${t.id} reserved for ${SLOTS[s.slot]}`);
   },
   askCancel:()=>openSheet({type:'cancel'}),
   doCancel:()=>{const i=SLOTS.indexOf(state.res.slot);state.st[i][state.res.id]='available';state.res=null;closeSheet();renderScreen();toast('Reservation cancelled')},
-  add:v=>{state.cart[v]=1;const n=byId(v).n;if(state.tab==='menu'){$('#menulist').innerHTML=menuListHTML();renderCartBar()}else{renderCartBar()}toast(`${n} added`)},
+  add:v=>{state.cart[v]=1;const n=byId(v).n;if(state.tab==='menu')$('#menulist').innerHTML=menuListHTML();renderCartBar();toast(`${n} added`)},
   inc:v=>{state.cart[v]=(state.cart[v]||0)+1;$('#menulist').innerHTML=menuListHTML();renderCartBar()},
   dec:v=>{state.cart[v]=Math.max(0,(state.cart[v]||0)-1);$('#menulist').innerHTML=menuListHTML();renderCartBar()},
   cat:v=>{state.cat=v;renderScreen()},
@@ -507,7 +536,7 @@ const A = {
   picked:v=>{const i=state.orders.findIndex(o=>o.id===v),o=state.orders.splice(i,1)[0];
     state.history.unshift({id:o.id,when:'Today · '+fmt(o.placedAt),items:o.items});renderScreen();toast('Enjoy your meal!')},
   mineTab:v=>{state.mineTab=v;renderScreen()},
-  reorder:v=>{const h=state.history.find(x=>x.id===v);h.items.forEach(i=>state.cart[i.id]=(state.cart[i.id]||0)+i.q);state.tab='menu';state.cat='All';state.q='';renderScreen();toast('Items added to your order')},
+  reorder:v=>{const h=state.history.find(x=>x.id===v);h.items.forEach(i=>state.cart[i.id]=(state.cart[i.id]||0)+i.q);state.tab='menu';state.cat='All';state.q='';state.stall=null;renderScreen();toast('Items added to your order')},
   closeSheet:()=>closeSheet()
 };
 document.addEventListener('click',e=>{
@@ -519,8 +548,8 @@ document.addEventListener('click',e=>{
 /* ---------- live simulation ---------- */
 setInterval(()=>{
   state.tick++;
-  if(state.tick%5===0) state.simNow++;                 // 1 sim-minute every 5 s
-  if(state.tick%7===0){                                // a table changes status
+  if(state.tick%5===0) state.simNow++;
+  if(state.tick%7===0){
     const si = Math.random()<.6?0:Math.floor(Math.random()*SLOTS.length);
     const cands = TABLES.filter(t=>state.st[si][t.id]!=='mine');
     const t = cands[Math.floor(Math.random()*cands.length)], cur = state.st[si][t.id];
