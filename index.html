@@ -121,6 +121,16 @@ svg.ic{flex:none;stroke:currentColor;fill:none;stroke-width:1.9;stroke-linecap:r
 .mini{position:relative!important;left:auto!important;top:auto!important;width:120px!important;height:84px!important;margin:0 auto}
 .mini .sp{gap:5px}.mini .tt{font-size:15px}
 
+.back{display:inline-flex;align-items:center;gap:5px;font-size:13px;font-weight:700;color:var(--brand-d);background:var(--brand-soft);padding:6px 11px;border-radius:99px}
+.rlist{display:flex;flex-direction:column;gap:12px;margin-top:6px}
+.rest{width:100%;text-align:left;background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:14px;box-shadow:0 2px 10px rgba(20,38,58,.04);display:block}
+.rest:active{transform:scale(.99)}
+.rico{width:50px;height:50px;border-radius:16px;display:grid;place-items:center;font-size:28px;flex:none}
+.rn{font-size:16px;font-weight:800;display:block}
+.rd{font-size:12px;color:var(--muted);margin:10px 0 8px;line-height:1.4}
+.rprev{background:#F5FAF9;border-radius:12px;padding:8px 12px;display:flex;flex-direction:column;gap:5px}
+.rp{display:flex;justify-content:space-between;font-size:12px;font-weight:600}
+.rmeta{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
 .search{display:flex;align-items:center;gap:10px;background:#fff;border:1.5px solid var(--line);border-radius:16px;padding:12px 14px;color:var(--muted)}
 .search input{border:0;outline:0;flex:1;background:none;font-size:14px}
 .item{display:flex;gap:12px;background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:10px;margin-bottom:10px}
@@ -206,6 +216,7 @@ const P = {
   bag:'M5 8h14l-1 12H6zM9 8V6a3 3 0 0 1 6 0v2',
   pin:'M12 21s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12zM12 11.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z',
   arrow:'M5 12h14M13 6l6 6-6 6',
+  back:'M19 12H5M11 18l-6-6 6-6',
   x:'M6 6l12 12M18 6L6 18',
   bolt:'M13 2L4 14h7l-1 8 9-12h-7z',
   cal:'M5 5h14a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zM4 10h16M8 3v4M16 3v4'
@@ -223,10 +234,14 @@ const addT = (x,y) => TABLES.push({id:'T'+(tn++),seats:4,x,y,w:46,h:32});
 
 /* Food stalls: a block of 4 on the left, a block of 4 on the right */
 const STALLS = [
-  {id:'L1',n:'Rice Corner',e:'🍚',side:'L'},{id:'L2',n:'Curry House',e:'🍛',side:'L'},
-  {id:'L3',n:'Noodle Bar',e:'🍜',side:'L'},{id:'L4',n:'Roti & Sweets',e:'🥞',side:'L'},
-  {id:'R1',n:'Snack & Salad',e:'🥗',side:'R'},{id:'R2',n:'Juice Bar',e:'🍊',side:'R'},
-  {id:'R3',n:'Tea House',e:'🧋',side:'R'},{id:'R4',n:'Coffee Point',e:'☕',side:'R'}
+  {id:'L1',n:'Rice Corner',e:'🍚',side:'L',c:'#FFE9D6',tag:'Rice with toppings',d:'Basil pork, chicken rice and classic rice plates.'},
+  {id:'L2',n:'Curry House',e:'🍛',side:'L',c:'#DFF5E3',tag:'Rice & curry',d:'Thai curries served with steamed rice.'},
+  {id:'L3',n:'Noodle Bar',e:'🍜',side:'L',c:'#FFF3CF',tag:'Thai noodles',d:'Boat noodles, pad thai and tom yum bowls.'},
+  {id:'L4',n:'Roti & Sweets',e:'🥞',side:'L',c:'#FFE1DC',tag:'Desserts & roti',d:'Crispy roti, fresh fruit and sweet treats.'},
+  {id:'R1',n:'Snack & Salad',e:'🥗',side:'R',c:'#DFF5E3',tag:'Snacks & salads',d:'Spring rolls, papaya salad and fresh greens.'},
+  {id:'R2',n:'Juice Bar',e:'🍊',side:'R',c:'#FFF3CF',tag:'Juice & smoothies',d:'Squeezed to order, plus cold drinking water.'},
+  {id:'R3',n:'Tea House',e:'🧋',side:'R',c:'#FFE9D6',tag:'Tea',d:'Thai iced tea and refreshing cold teas.'},
+  {id:'R4',n:'Coffee Point',e:'☕',side:'R',c:'#EADFF7',tag:'Coffee',d:'Espresso drinks, hot or iced.'}
 ];
 const stallById = id => STALLS.find(s => s.id === id);
 
@@ -245,7 +260,19 @@ const MENU = [
   {id:'d1',n:'Thai Iced Tea',d:'Classic, creamy and sweet',p:25,cat:'Drinks',e:'🧋',c:'#FFE9D6',t:2,s:'R3'},
   {id:'d2',n:'Iced Americano',d:'Double shot over ice',p:35,cat:'Drinks',e:'☕',c:'#EADFF7',t:3,s:'R4'},
   {id:'d3',n:'Fresh Orange Juice',d:'Squeezed to order',p:30,cat:'Drinks',e:'🍊',c:'#FFF3CF',t:3,s:'R2'},
-  {id:'d4',n:'Drinking Water',d:'600 ml bottle',p:10,cat:'Drinks',e:'💧',c:'#E4F0FF',t:1,s:'R2'}
+  {id:'d4',n:'Drinking Water',d:'600 ml bottle',p:10,cat:'Drinks',e:'💧',c:'#E4F0FF',t:1,s:'R2'},
+  {id:'r5',n:'Garlic Pork Rice',d:'Pepper-garlic pork, rice, fried egg',p:45,cat:'Rice',e:'🥓',c:'#FFE9D6',t:7,s:'L1'},
+  {id:'r6',n:'Fried Egg',d:'Crispy fried egg, add to any rice plate',p:10,cat:'Rice',e:'🍳',c:'#FFF3CF',t:3,s:'L1'},
+  {id:'r7',n:'Panang Pork Curry',d:'Creamy panang curry with jasmine rice',p:55,cat:'Rice',e:'🍛',c:'#FFE1DC',t:6,s:'L2'},
+  {id:'r8',n:'Steamed Rice',d:'Extra bowl of jasmine rice',p:10,cat:'Rice',e:'🍚',c:'#E4F0FF',t:2,s:'L2'},
+  {id:'n4',n:'Crispy Pork Noodles',d:'Egg noodles, crispy pork, greens',p:60,cat:'Noodles',e:'🍜',c:'#FFE9D6',t:8,s:'L3'},
+  {id:'s5',n:'Mango Sticky Rice',d:'Sweet mango, coconut sticky rice',p:60,cat:'Snacks',e:'🥭',c:'#FFF3CF',t:3,s:'L4'},
+  {id:'s6',n:'Papaya Salad',d:'Som tam, peanuts, lime, chili',p:45,cat:'Snacks',e:'🥗',c:'#DFF5E3',t:5,s:'R1'},
+  {id:'d5',n:'Watermelon Smoothie',d:'Blended watermelon, chilled',p:35,cat:'Drinks',e:'🍉',c:'#FFE1DC',t:3,s:'R2'},
+  {id:'d6',n:'Iced Green Tea',d:'Unsweetened or lightly sweet',p:25,cat:'Drinks',e:'🍵',c:'#DFF5E3',t:2,s:'R3'},
+  {id:'d7',n:'Iced Lemon Tea',d:'Black tea, fresh lemon',p:25,cat:'Drinks',e:'🍋',c:'#FFF3CF',t:2,s:'R3'},
+  {id:'d8',n:'Iced Latte',d:'Espresso with milk over ice',p:40,cat:'Drinks',e:'🥛',c:'#EADFF7',t:3,s:'R4'},
+  {id:'d9',n:'Hot Cappuccino',d:'Espresso, steamed milk, foam',p:40,cat:'Drinks',e:'☕',c:'#FFE9D6',t:4,s:'R4'}
 ];
 const CATS = ['All','Rice','Noodles','Snacks','Drinks'];
 const byId = id => MENU.find(m => m.id === id);
@@ -370,15 +397,15 @@ function tablesHTML(){
     <div class="river" style="left:0;top:0;width:580px;height:50px">RIVER</div>
     <div class="floor" style="${bx(44,58,522,319)}"></div>
     <div class="poi wall" style="${bx(0,58,34,68)}"></div>
-    <div class="poi info" style="${bx(325,66,66,52)}"><span class="e">  </span>  </div>
+    <div class="poi info" style="${bx(325,66,66,52)}"><span class="e">ℹ️</span>INFO</div>
     ${tbs}${stalls}
     <div class="poi wc" style="${bx(6,187,26,64)}">🚻 TOILET</div>
     <div class="poi wc" style="${bx(6,262,26,64)}">🚻 TOILET</div>
     <div class="tag" style="${bx(34,318,38,12)}">← Door</div>
     <div class="wallline" style="left:20px;top:377px;width:425px"></div>
-    <div class="poi ctu" style="${bx(482,380,98,34)}">Path to CITU →</div>
+    <div class="poi ctu" style="${bx(482,380,98,34)}">Path to CTU →</div>
     <div class="wallline thin" style="left:20px;top:450px;width:425px"></div>
-    <div class="btr" style="${bx(175,498,137,36)}">BIR</div>
+    <div class="btr" style="${bx(175,498,137,36)}">BTR</div>
   </div></div>
   <p class="maphint">↔ Swipe sideways to see the whole canteen</p>
   <p class="small muted mt8" style="text-align:center">${mineHere?'Your table is highlighted in teal.':'Every table seats 4. Tap a table to reserve it, or a food shop to see its menu.'}</p>`;
@@ -386,7 +413,7 @@ function tablesHTML(){
 
 function menuListHTML(){
   const q = state.q.trim().toLowerCase();
-  const list = MENU.filter(m=>(!state.stall||m.s===state.stall)&&(state.cat==='All'||m.cat===state.cat)&&(!q||(m.n+m.d).toLowerCase().includes(q)));
+  const list = MENU.filter(m=>m.s===state.stall&&(!q||(m.n+m.d).toLowerCase().includes(q)));
   if(!list.length) return `<div class="empty"><div class="eb">${ic('search',28)}</div>No dishes match${state.q?` “${state.q}”`:' this filter'}.</div>`;
   return list.map(m=>{
     const qty = state.cart[m.id]||0;
@@ -397,12 +424,30 @@ function menuListHTML(){
       <div class="meta"><div><span class="price">${baht(m.p)}</span> <span class="prep" style="display:inline-flex;margin-left:6px">${ic('clock',12)}${m.t} min</span></div>${ctl}</div></div></div>`;
   }).join('');
 }
+function restaurantsHTML(){
+  const cards = STALLS.map(st=>{
+    const items = MENU.filter(m=>m.s===st.id), min = Math.min(...items.map(m=>m.p));
+    const inCart = items.reduce((n,m)=>n+(state.cart[m.id]||0),0);
+    const prev = items.slice(0,3).map(m=>`<div class="rp"><span>${m.n}</span><b>${baht(m.p)}</b></div>`).join('');
+    return `<button class="rest" data-a="stall" data-v="${st.id}" aria-label="Open ${st.n} menu">
+      <div class="row gap12"><div class="rico" style="background:${st.c}">${st.e}</div>
+        <div style="flex:1;min-width:0"><b class="rn">${st.n}</b><div class="small muted">${st.tag}</div></div>
+        ${inCart?`<span class="pill green">${inCart} in cart</span>`:`<span class="muted">${ic('arrow',18)}</span>`}</div>
+      <p class="rd">${st.d}</p>
+      <div class="rprev">${prev}${items.length>3?`<div class="small muted">+${items.length-3} more</div>`:''}</div>
+      <div class="rmeta"><span class="pill gray">${items.length} menu items</span><span class="pill gray">from ${baht(min)}</span><span class="pill gray">Stall ${st.id}</span></div>
+    </button>`}).join('');
+  return `
+  <div class="top"><div><div class="eyebrow">${ic('bag',13)}ZEROWAIT · Canteen</div><h1>Food ordering</h1><div class="muted" style="font-size:14px;font-weight:600;margin-top:2px">Choose a restaurant</div></div><span class="pill gray">${ic('clock',12)}Open until 17:00</span></div>
+  <div class="rlist">${cards}</div>`;
+}
 function menuHTML(){
   const st = state.stall ? stallById(state.stall) : null;
+  if(!st) return restaurantsHTML();
+  const n = MENU.filter(m=>m.s===st.id).length;
   return `
-  <div class="top"><div><div class="eyebrow">${ic('bag',13)}Pickup at Counter 2</div><h1>${st?st.n:'Order ahead'}</h1></div><span class="pill gray">${ic('clock',12)}Open until 17:00</span></div>
-  <div class="search">${ic('search',18)}<input id="q" type="search" placeholder="Search dishes or drinks" value="${state.q.replace(/"/g,'&quot;')}"></div>
-  <div class="chips mt12">${st?`<button class="chip on" data-a="stallAll">${st.e} ${st.n} ✕</button>`:''}${CATS.map(c=>`<button class="chip ${state.cat===c?'on':''}" data-a="cat" data-v="${c}">${c}</button>`).join('')}</div>
+  <div class="top"><div><button class="back" data-a="stallAll">${ic('back',14)}All restaurants</button><h1 style="margin-top:8px">${st.e} ${st.n}</h1><div class="small muted">${st.tag} · Stall ${st.id} · ${n} menu items</div></div><span class="pill gray">${ic('clock',12)}Open until 17:00</span></div>
+  <div class="search">${ic('search',18)}<input id="q" type="search" placeholder="Search ${st.n}" value="${state.q.replace(/"/g,'&quot;')}"></div>
   <div class="mt16" id="menulist">${menuListHTML()}</div>`;
 }
 
@@ -494,6 +539,7 @@ function renderSheet(){
 const prepFor = items => Math.min(18, 6 + items.reduce((s,i)=>s+i.q,0)*2);
 
 /* ---------- actions ---------- */
+function refreshMenu(){ if(state.tab!=='menu') return; const l=$('#menulist'); if(l) l.innerHTML=menuListHTML(); else renderScreen(); }
 let toastT;
 function toast(msg){ const t=$('#toast'); t.innerHTML = ic('check',16)+msg; t.classList.add('show'); clearTimeout(toastT); toastT=setTimeout(()=>t.classList.remove('show'),2200); }
 function go(tab){ state.tab=tab; $('#screen').scrollTop=0; renderScreen(); }
@@ -519,13 +565,13 @@ const A = {
   },
   askCancel:()=>openSheet({type:'cancel'}),
   doCancel:()=>{const i=SLOTS.indexOf(state.res.slot);state.st[i][state.res.id]='available';state.res=null;closeSheet();renderScreen();toast('Reservation cancelled')},
-  add:v=>{state.cart[v]=1;const n=byId(v).n;if(state.tab==='menu')$('#menulist').innerHTML=menuListHTML();renderCartBar();toast(`${n} added`)},
-  inc:v=>{state.cart[v]=(state.cart[v]||0)+1;$('#menulist').innerHTML=menuListHTML();renderCartBar()},
-  dec:v=>{state.cart[v]=Math.max(0,(state.cart[v]||0)-1);$('#menulist').innerHTML=menuListHTML();renderCartBar()},
+  add:v=>{state.cart[v]=1;const n=byId(v).n;refreshMenu();renderCartBar();toast(`${n} added`)},
+  inc:v=>{state.cart[v]=(state.cart[v]||0)+1;refreshMenu();renderCartBar()},
+  dec:v=>{state.cart[v]=Math.max(0,(state.cart[v]||0)-1);refreshMenu();renderCartBar()},
   cat:v=>{state.cat=v;renderScreen()},
   openCart:()=>openSheet({type:'cart',pickup:'asap'}),
-  cinc:v=>{state.cart[v]++;renderSheet();renderCartBar();if(state.tab==='menu')$('#menulist').innerHTML=menuListHTML()},
-  cdec:v=>{state.cart[v]--;if(!cartCount()){closeSheet()}else renderSheet();renderCartBar();if(state.tab==='menu')$('#menulist').innerHTML=menuListHTML()},
+  cinc:v=>{state.cart[v]++;renderSheet();renderCartBar();refreshMenu()},
+  cdec:v=>{state.cart[v]--;if(!cartCount()){closeSheet()}else renderSheet();renderCartBar();refreshMenu()},
   pickup:v=>{state.sheet.pickup=v;renderSheet()},
   placeOrder:()=>{
     const items=cartItems(), p=state.sheet.pickup, prep=prepFor(items), now=state.simNow;
